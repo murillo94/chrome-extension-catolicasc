@@ -6,3 +6,7 @@ const urlCourse = [
 const urlPayments = [
   'https://app.catolicasc.org.br/BoletoNovo/restrito/titulosAbertos.jsp'
 ];
+
+const urlExercises = [
+  'http://cscj.mrooms.net/theme/snap/rest.php?action=get_deadlines'
+];
