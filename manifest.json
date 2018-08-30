@@ -1,0 +1,21 @@
+{
+  "name": "Católica SC - Info Aluno",
+  "short_name": "Info Aluno",
+  "version": "1.0",
+  "description": "Uma extensão que centraliza as principais informações do aluno na Univ. Católica de Santa Catarina - Joinville",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/index.js"],
+      "all_frames": true
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "img/icon.png",
+    "default_title": "Católica SC"
+  },
+  "permissions": ["tabs", "activeTab", "https://app.catolicasc.org.br/*"],
+  "manifest_version": 2
+}
