@@ -7,17 +7,21 @@ const colorPositive = "#4ca64c",
 document.addEventListener('DOMContentLoaded', function() {
   try {
     let btnLogin = findId("login"),
+        btnLoginMoodle = findId("login-moodle"),
         btnClose = findId("close"),
         btnCourse = findId('tab-course'),
         btnPayments = findId('tab-payments');
+        btnExercises = findId('tab-exercises');
 
     loading = findId('load');
     contentAll = findId('content-all');
 
     btnLogin.onclick = actionNewTab;
+    btnLoginMoodle.onclick = actionNewTab;
     btnClose.onclick = actionClose;
     btnCourse.onclick = actionTabCourse;
     btnPayments.onclick = actionTabPayments;
+    btnExercises.onclick = actionTabExercises;
 
     requestTabCourse(urlCourse);
   } catch(err) {
@@ -34,6 +38,17 @@ function authUser(dom, fn) {
   const isAuth = (dom.split(': ').pop().replace(/\s/g, '') !== '');
 
   fn({isLogged: isLogged, isAuth: isAuth});
+}
+
+function authMoodleUser() {
+  contentAll.style.display = "none";
+  loading.style.display = "none";
+  let contentMoodleNotLogged = findId('content-moodle-not-logged');
+  contentMoodleNotLogged.style.display = "block";
+}
+
+function showMoodleLogin() {
+
 }
 
 function actionNewTab() {
@@ -54,6 +69,11 @@ function actionTabPayments() {
   requestTabPayments();
 }
 
+function actionTabExercises() {
+  this.parentNode.dataset.selectedTab = '3';
+  requestTabExercises();
+}
+
 function requestTabCourse() {
   request(urlCourse, 'multiple', (parser, response) => {
     modifyDOMCourse(parser.parseFromString(response.data, "text/html"), res => {
@@ -65,6 +85,18 @@ function requestTabCourse() {
 function requestTabPayments() {
   request(urlPayments, 'individual', (parser, response) => {
     modifyDOMPayments(parser.parseFromString(response.data, "text/html"), res => {
+      requestDone(res);
+    });
+  });
+}
+
+function requestTabExercises() {
+  request(urlExercises, 'individual', (parser, response) => {
+    if(response.data.error) {
+      authMoodleUser();
+      return;
+    }
+    modifyDOMExercises(parser.parseFromString(response.data.html, "text/html"), res => {
       requestDone(res);
     });
   });
