@@ -13,20 +13,20 @@ Por exemplo, com essa extensão você poder ver tudo em um só lugar a sua médi
 
 - Abrir a url _chrome://extensions_
 - Habilitar modo desenvolvedor
-- Clicar em "carregar sem compactação" e enviar a pasta
+- Clicar em "carregar sem compactação" e envie o manifest.json
 
 > https://developer.chrome.com/extensions/getstarted#manifest
 
 ### Mozilla Firefox
 
 - Abrir a url _about:debugging_
-- Clicar em "carregar temporário add-on" e enviar a pasta
+- Clicar em "carregar temporário add-on" e envie o manifest.json
 
 > https://developer.mozilla.org/en-US/docs/Tools/about:debugging
 
 ## Importante
 
-Toda as requisições HTTP feitas até o momento na aplicação tem como resposta "content-type: text/html", sendo assim é necessário manipular o DOM obtido para extrair as informações necessárias.
+Todas as requisições HTTP feitas até o momento na aplicação recebe como resposta "content-type: text/html", sendo assim é necessário manipular o DOM obtido para extrair as informações necessárias.
 
 ## TODO
 
