@@ -24,10 +24,15 @@ Por exemplo, com essa extensão você poder ver tudo em um só lugar a sua médi
 
 > https://developer.mozilla.org/en-US/docs/Tools/about:debugging
 
+## Importante
+
+Toda as requisições HTTP feitas até o momento na aplicação tem como resposta "content-type: text/html", sendo assim é necessário manipular o DOM obtido para extrair as informações necessárias.
+
 ## TODO
 
-- Adicionar aba para buscar notas do semestre atual.
-- Adicionar aba para buscar taferas do semestre atual.
-- Adicionar aba para buscar notícias/calendário da faculdade.
-- Fazer uma novo design para a tela de boletos.
-- Adicionar imagens de como funciona a aplicação no README.md.
+- Adicionar aba/lógica para buscar notas do semestre atual.
+- Adicionar aba/lógica para buscar notícias/calendário da faculdade.
+- Adicionar lógica para logar apenas uma vez (guardar em storage), para que quando entrar na aplicação reutilizar o storage.
+- Fazer novo estilo para aba de tarefas.
+- Fazer novo estilo para a aba de boletos.
+- Adicionar imagens da aplicação no README.md.
