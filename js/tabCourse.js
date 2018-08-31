@@ -1,52 +1,54 @@
+function calcFreq(freq, count) {
+  return (freq / count).toFixed(1);
+}
+
+function calcAvg(total, count) {
+  return total / count;
+}
+
+function formatCourseName(course) {
+  const format = course.split(': ').pop();
+  return format.charAt(0).toUpperCase() + format.slice(1).toLowerCase();
+}
+
 function modifyDOMCourse(dom, fn) {
   document.body.style.width = '300px';
-  dom.getElementsByTagName("table")[0].setAttribute("id", "infos");
+  dom.getElementsByTagName('table')[0].setAttribute('id', 'infos');
 
-  const infoDOM = dom.getElementById("infos").rows[0].cells[0].innerText;
+  const infoDOM = dom.getElementById('infos').rows[0].cells[0].innerText;
 
   authUser(infoDOM, res => {
-    if(res.isLogged) {
+    if(res.isNotLogged) {
       fn(false);
     } else {
       if(res.isAuth) {
-        dom.getElementsByTagName("table")[2].setAttribute("id", "notas");
+        dom.getElementsByTagName('table')[2].setAttribute('id', 'notas');
 
-        let course = infoDOM,
-            rows = dom.getElementById("notas").rows,
-            total = 0,
-            totalApproved = 0,
-            totalDisapproved = 0,
-            freq = 0,
-            count = 0,
-            level = "",
-            items = [],
-            courseName = findId('course-name'),
-            content = findId('content');
+        let course = infoDOM;
+        let rows = dom.getElementById('notas').rows;
+        let total = 0;
+        let totalApproved = 0;
+        let totalDisapproved = 0;
+        let freq = 0;
+        let count = 0;
+        let level = '';
+        let items = [];
+        let courseName = findId('course-name');
+        let content = findId('content');
 
         content.innerHTML = '';
 
         const tableLength = rows.length;
         const lastLevel = rows[tableLength - 1].cells[0].innerText;
 
-        const calcFreq = function() {
-          return (freq / count).toFixed(1);
-        };
-
-        const calcAvg = function() {
-          return total / count;
-        };
-
-        const formatCourseName = function() {
-          const format = course.split(': ').pop();
-          return format.charAt(0).toUpperCase() + format.slice(1).toLowerCase();
-        };
-
         for (let x = 0; x < tableLength; x++) {
           if (!Number.isNaN(parseFloat(rows[x].cells[2].innerText))) {
-            level = rows[x].cells[1].children[0].innerText === "" && rows[x].cells[0].innerText !== lastLevel ? parseInt(rows[x].cells[0].innerText) + 1 : rows[x].cells[0].innerText;
+            level = rows[x].cells[1].children[0].innerText === '' && rows[x].cells[0].innerText !== lastLevel
+              ? parseInt(rows[x].cells[0].innerText, 10) + 1
+              : rows[x].cells[0].innerText;
             total += parseFloat(rows[x].cells[2].innerText);
-            totalDisapproved += parseFloat(rows[x].cells[2].innerText) < 6 ? 1 : 0;
-            totalApproved += parseFloat(rows[x].cells[2].innerText) > 6 ? 1 : 0;
+            totalDisapproved += (parseFloat(rows[x].cells[2].innerText) < 6) && 1;
+            totalApproved += (parseFloat(rows[x].cells[2].innerText) > 6) && 1;
             freq += parseFloat(rows[x].cells[4].innerText);
             count++;
           }
@@ -61,30 +63,36 @@ function modifyDOMCourse(dom, fn) {
         }, {
           name: 'Total de matérias reprovadas:',
           value: totalDisapproved,
-          color: totalDisapproved === 0 ? colorPositive : colorNegative
+          color: totalDisapproved === 0
+            ? colorPositive
+            : colorNegative
         }, {
           name: 'Total de matérias aprovadas:',
           value: totalApproved,
           color: colorPositive
         }, {
           name: 'Média total das matérias cursadas:',
-          value: calcAvg(),
-          color: calcAvg() > 6 ? colorPositive : colorNegative
+          value: calcAvg(total, count),
+          color: calcAvg(total, count) > 6
+            ? colorPositive
+            : colorNegative
         }, {
           name: 'Frequência:',
-          value: calcFreq(),
-          color: calcFreq() > 70 ? colorPositive : colorNegative
+          value: calcFreq(freq, count),
+          color: calcFreq(freq, count) > 70
+            ? colorPositive
+            : colorNegative
         }];
 
-        courseName.innerText = formatCourseName();
+        courseName.innerText = formatCourseName(course);
 
-        let ul = document.createElement('ul');
+        let ul = createElement('ul');
         const itemsLength = items.length;
 
         content.appendChild(ul);
 
         for(let y = 0; y < itemsLength; y++) {
-          let li = document.createElement('li');
+          let li = createElement('li');
           li.setAttribute('id', y);
           ul.appendChild(li).innerHTML = `${items[y].name} <span>${items[y].value}</span>`;
           if(items[y].color) {

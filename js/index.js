@@ -1,17 +1,17 @@
-let loading,
-    contentAll;
+let loading;
+let contentAll;
 
-const colorPositive = "#4ca64c",
-      colorNegative = "#ff6666";
+const colorPositive = '#4ca64c';
+const colorNegative = '#ff6666';
 
 document.addEventListener('DOMContentLoaded', function() {
   try {
-    let btnLogin = findId("login"),
-        btnLoginMoodle = findId("login-moodle"),
-        btnClose = findId("close"),
-        btnCourse = findId('tab-course'),
-        btnPayments = findId('tab-payments');
-        btnExercises = findId('tab-exercises');
+    let btnLogin = findId('login');
+    let btnLoginMoodle = findId('login-moodle');
+    let btnClose = findId('close');
+    let btnCourse = findId('tab-course');
+    let btnPayments = findId('tab-payments');
+    let btnExercises = findId('tab-exercises');
 
     loading = findId('load');
     contentAll = findId('content-all');
@@ -33,22 +33,22 @@ function findId(query, context = document) {
   return context.getElementById(query);
 }
 
-function authUser(dom, fn) {
-  const isLogged = (dom.split(': ').pop().replace(/\s/g, '') === 'Históricoacadêmico');
-  const isAuth = (dom.split(': ').pop().replace(/\s/g, '') !== '');
+function createElement(query, context = document) {
+  return context.createElement(query);
+}
 
-  fn({isLogged: isLogged, isAuth: isAuth});
+function authUser(dom, fn) {
+  const domReplaced = dom.split(': ').pop().replace(/\s/g, '');
+  const isNotLogged = (domReplaced === 'Históricoacadêmico');
+  const isAuth = (domReplaced !== '');
+  fn({isNotLogged: isNotLogged, isAuth: isAuth});
 }
 
 function authMoodleUser() {
-  contentAll.style.display = "none";
-  loading.style.display = "none";
+  contentAll.style.display = 'none';
+  loading.style.display = 'none';
   let contentMoodleNotLogged = findId('content-moodle-not-logged');
-  contentMoodleNotLogged.style.display = "block";
-}
-
-function showMoodleLogin() {
-
+  contentMoodleNotLogged.style.display = 'block';
 }
 
 function actionNewTab() {
@@ -76,7 +76,8 @@ function actionTabExercises() {
 
 function requestTabCourse() {
   request(urlCourse, 'multiple', (parser, response) => {
-    modifyDOMCourse(parser.parseFromString(response.data, "text/html"), res => {
+    const { data } = response;
+    modifyDOMCourse(parser.parseFromString(data, 'text/html'), res => {
       requestDone(res);
     });
   });
@@ -84,7 +85,8 @@ function requestTabCourse() {
 
 function requestTabPayments() {
   request(urlPayments, 'individual', (parser, response) => {
-    modifyDOMPayments(parser.parseFromString(response.data, "text/html"), res => {
+    const { data } = response;
+    modifyDOMPayments(parser.parseFromString(data, 'text/html'), res => {
       requestDone(res);
     });
   });
@@ -92,21 +94,24 @@ function requestTabPayments() {
 
 function requestTabExercises() {
   request(urlExercises, 'individual', (parser, response) => {
-    if(response.data.error) {
+    const { error, html } = response.data;
+    if(error) {
       authMoodleUser();
       return;
     }
-    modifyDOMExercises(parser.parseFromString(response.data.html, "text/html"), res => {
+    modifyDOMExercises(parser.parseFromString(html, 'text/html'), res => {
       requestDone(res);
     });
   });
 }
 
 function request(url, type, fn) {
-  loading.style.display = "block";
-  contentAll.style.display = "none";
+  loading.style.display = 'block';
+  contentAll.style.display = 'none';
 
-  const getType = type === 'multiple' ? getMultiple(url) : get(url);
+  const getType = type === 'multiple'
+    ? getMultiple(url)
+    : get(url);
 
   getType
     .then(response => {
@@ -119,12 +124,12 @@ function request(url, type, fn) {
 }
 
 function requestDone(res) {
-  loading.style.display = "none";
+  loading.style.display = 'none';
 
   if(res) {
-    contentAll.style.display = "block";
+    contentAll.style.display = 'block';
   } else {
     let contentNotLogged = findId('content-not-logged');
-    contentNotLogged.style.display = "block";
+    contentNotLogged.style.display = 'block';
   }
 }

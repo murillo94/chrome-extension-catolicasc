@@ -1,29 +1,31 @@
 function modifyDOMPayments(dom, fn) {
   document.body.style.width = '530px';
-  dom.getElementsByTagName("table")[0].setAttribute("id", "contas");
+  dom.getElementsByTagName('table')[0].setAttribute('id', 'contas');
 
-  let rows = dom.getElementById("contas").rows,
-      header = rows[0].cells,
-      countPaymentLate = 0,
-      content = findId('content');
+  let rows = dom.getElementById('contas').rows;
+  let header = rows[0].cells;
+  let countPaymentLate = 0;
+  let content = findId('content');
 
   content.innerHTML = '';
 
-  const tableLength = rows.length > 11 ? 12 : rows.length;
+  const tableLength = rows.length > 11
+    ? 12
+    : rows.length;
   const headerLength = rows[0].cells.length;
 
-  let paymentLate = document.createElement('div');
+  let paymentLate = createElement('div');
   paymentLate.setAttribute('id', 'paymentLate');
 
-  let table = document.createElement('table');
-  let tr = document.createElement('tr');
+  let table = createElement('table');
+  let tr = createElement('tr');
 
   content.appendChild(paymentLate);
   content.appendChild(table);
   table.appendChild(tr);
 
   for(let x = 0; x < headerLength; x++) {
-    let td = document.createElement('td');
+    let td = createElement('td');
     td.setAttribute('id', x);
     td.setAttribute('size', 2);
     td.setAttribute('align', 'left');
@@ -31,9 +33,9 @@ function modifyDOMPayments(dom, fn) {
   }
 
   for(let y = 1; y <= tableLength; y++) {
-    let trNew = document.createElement('tr');
+    let trNew = createElement('tr');
     for(let i = 0; i < rows[y].cells.length; i++) {
-      let tdNew = document.createElement('td');
+      let tdNew = createElement('td');
       tdNew.setAttribute('id', y+i);
       tdNew.setAttribute('size', 2);
       tdNew.setAttribute('align', 'left');
@@ -48,14 +50,20 @@ function modifyDOMPayments(dom, fn) {
     }
   }
 
-  const pendingText = countPaymentLate === 1 ? 'pendência' : 'pendências';
-  const pendingMonthText = tableLength === 1 ? 'no último mês' : `nos últimos ${tableLength} meses`;
-  const pendingColor = countPaymentLate > 0 ? colorNegative : colorPositive;
+  const pendingText = countPaymentLate === 1
+    ? 'pendência'
+    : 'pendências';
+  const pendingMonthText = tableLength === 1
+    ? 'no último mês'
+    : `nos últimos ${tableLength} meses`;
+  const pendingColor = !!countPaymentLate
+    ? colorNegative
+    : colorPositive;
 
-  findId('paymentLate').innerHTML = `Você tem <span style="color:${pendingColor};">${countPaymentLate} ${pendingText}</span> ${pendingMonthText}</span>`;
+  findId('paymentLate').innerHTML = `Você tem <span style="color: ${pendingColor};">${countPaymentLate} ${pendingText}</span> ${pendingMonthText}</span>`;
 
-  if(countPaymentLate > 0) {
-    let paymentLink = document.createElement('a');
+  if(!!countPaymentLate) {
+    let paymentLink = createElement('a');
 
     paymentLink.setAttribute('data-url', 'https://app.catolicasc.org.br/BoletoNovo/?origem=academico');
     paymentLink.style.cssText = 'margin-left: 5px; cursor: pointer; text-decoration: underline;'
