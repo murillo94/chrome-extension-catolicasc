@@ -107,7 +107,6 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0 0 6px;
 }
 
 .course-name {
@@ -152,33 +151,37 @@ body {
 .header {
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  margin: 25px 0;
+}
+
+.tab {
+  margin-right: 10px;
+  padding: 4px 0;
 }
 
 .options {
-  margin-right: 10px;
   background: #eee;
   border-radius: 7px;
   padding: 4px 10px;
   cursor: pointer;
   color: #a6a6a9;
   font-size: 12px;
-  position: relative;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-}
-
-.options:hover {
-  background: #e6e6e6;
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
 
+.options:hover {
+  background: #e6e6e6;
+}
+
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
@@ -187,6 +190,10 @@ li {
   color: #9a9494;
   padding: 14px 0;
   border-bottom: 1px dashed #cacacd;
+}
+
+li:first-child {
+  padding-top: 0;
 }
 
 li:last-child {
@@ -202,8 +209,7 @@ li span {
 #paymentLate {
   font-size: 13px;
   color: #9a9494;
-  padding: 14px 0;
-  margin: 1em 0 0;
+  padding: 0 0 5px;
 }
 
 table {
@@ -234,46 +240,14 @@ tr:nth-child(1) td {
   padding: 14px 0;
 }
 
-.header[data-selected-tab="1"] .options:nth-child(1) {
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked ~ .options {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-}
-
-.header[data-selected-tab="1"] .options:nth-child(1):after {
-  content: " ";
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  border: 1px solid #982f4394;
-}
-
-.header[data-selected-tab="2"] .options:nth-child(2) {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.header[data-selected-tab="2"] .options:nth-child(2):after {
-  content: " ";
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  border: 1px solid #982f4394;
-}
-
-.header[data-selected-tab="3"] .options:nth-child(3) {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.header[data-selected-tab="3"] .options:nth-child(3):after {
-  content: " ";
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  border: 1px solid #982f4394;
+  border-bottom: 2px solid #982f4394;
 }
 
 .snap-media-object > a > img,

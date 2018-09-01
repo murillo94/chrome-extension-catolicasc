@@ -50,15 +50,24 @@
       <span id="course-name" class="course-name"></span>
       <div id="close" class="close-popup">x</div>
     </div>
-    <div class="header" data-selected-tab="1">
-      <div class="options" id="tab-course" data-selected="1">
-        Curso
+    <div class="header">
+      <div class="tab">
+        <input type="radio" id="tab-course" name="menu" checked>
+        <label class="options" for="tab-course">
+            Curso
+        </label>
       </div>
-      <div class="options" id="tab-payments" data-selected="2">
-        Boletos
+      <div class="tab">
+        <input type="radio" id="tab-payments" name="menu">
+        <label class="options" for="tab-payments">
+            Boletos
+        </label>
       </div>
-      <div class="options" id="tab-exercises" data-selected="3">
-        Tarefas
+      <div class="tab">
+        <input type="radio" id="tab-exercises" name="menu">
+        <label class="options" for="tab-exercises">
+            Tarefas
+        </label>
       </div>
     </div>
     <div id="content"></div>

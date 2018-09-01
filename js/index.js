@@ -60,17 +60,14 @@ function actionClose() {
 }
 
 function actionTabCourse() {
-  this.parentNode.dataset.selectedTab = '1';
   requestTabCourse();
 }
 
 function actionTabPayments() {
-  this.parentNode.dataset.selectedTab = '2';
   requestTabPayments();
 }
 
 function actionTabExercises() {
-  this.parentNode.dataset.selectedTab = '3';
   requestTabExercises();
 }
 
