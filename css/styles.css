@@ -184,7 +184,7 @@ ul {
   margin: 0;
 }
 
-li {
+.info-course li {
   font-weight: 600;
   font-size: 13px;
   color: #9a9494;
@@ -192,24 +192,35 @@ li {
   border-bottom: 1px dashed #cacacd;
 }
 
-li:first-child {
+.info-course li:first-child {
   padding-top: 0;
 }
 
-li:last-child {
+.info-course li:last-child {
   border: none;
   padding: 14px 0 5px;
 }
 
-li span {
+.info-course li span {
   font-weight: 500;
   float: right;
 }
 
-#paymentLate {
+.payment-status {
   font-size: 13px;
   color: #9a9494;
   padding: 0 0 5px;
+}
+
+.payment-link {
+  margin-left: 5px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.payment-row-open {
+  background-color: rgba(255, 102, 102, 0.8);
+  color: #ffffff;
 }
 
 table {
@@ -303,4 +314,42 @@ input[type="radio"]:checked ~ .options {
 .snap-media-object {
   font-weight: 500;
   margin: 1.5em 0;
+}
+
+.month-calendar {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 0;
+}
+
+.month-calendar:first-child {
+  padding-top: 0;
+}
+
+.item-calendar {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  line-height: 1.3;
+}
+
+.date-calendar {
+  font-size: 14px;
+  color: #9a9494;
+  margin-right: 15px;
+  padding: 5px;
+  background: #eee;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.title-calendar {
+  font-size: 13px;
+  color: #9a9494;
+}
+
+a {
+  text-decoration: underline;
+  cursor: pointer;
 }

@@ -31,7 +31,8 @@ Todas as requisições HTTP feitas até o momento na aplicação recebe como res
 ## TODO
 
 - Adicionar aba/lógica para buscar notas do semestre atual.
-- Adicionar aba/lógica para buscar notícias/calendário da faculdade.
+- Adicionar botão/lógica para buscar calendário da unidade de Jaraguá do Sul na mesma aba do calendário, Joinville já está buscando.
+- Adicionar aba para buscar notícias.
 - Adicionar lógica para logar apenas uma vez (guardar em storage), para que quando entrar na aplicação reutilizar o storage.
 - Fazer novo estilo para aba de tarefas.
 - Fazer novo estilo para a aba de boletos.

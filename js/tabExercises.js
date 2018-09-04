@@ -8,10 +8,10 @@ function modifyDOMExercises(dom, fn) {
 
   let links = content.getElementsByTagName('a');
 
-  for (var i = 0; i < links.length; i++) {
-    let href = links[i].getAttribute('href');
-    links[i].setAttribute('data-url', href);
-    links[i].onclick = actionNewTab;
+  for (let x = 0; x < links.length; x++) {
+    let href = links[x].getAttribute('href');
+    links[x].setAttribute('data-url', href);
+    links[x].onclick = actionNewTab;
   }
 
   fn(true);

@@ -16,6 +16,7 @@ function modifyDOMPayments(dom, fn) {
 
   let paymentLate = createElement('div');
   paymentLate.setAttribute('id', 'paymentLate');
+  paymentLate.classList.add('payment-status');
 
   let table = createElement('table');
   let tr = createElement('tr');
@@ -41,8 +42,7 @@ function modifyDOMPayments(dom, fn) {
       tdNew.setAttribute('align', 'left');
       tdNew.style.paddingLeft = '5px';
       if(i === 0 && rows[y].cells[4].innerText === 'aberto') {
-        trNew.style.background = 'rgba(255, 102, 102, 0.8)';
-        trNew.style.color = '#ffffff';
+        trNew.classList.add('payment-row-open');
         countPaymentLate++;
       }
       trNew.appendChild(tdNew).innerHTML = rows[y].cells[i].innerText;
@@ -66,7 +66,7 @@ function modifyDOMPayments(dom, fn) {
     let paymentLink = createElement('a');
 
     paymentLink.setAttribute('data-url', 'https://app.catolicasc.org.br/BoletoNovo/?origem=academico');
-    paymentLink.style.cssText = 'margin-left: 5px; cursor: pointer; text-decoration: underline;'
+    paymentLink.classList.add('payment-link');
     paymentLink.innerHTML = '(Imprimir)';
     findId('paymentLate').appendChild(paymentLink);
     paymentLink.onclick = actionNewTab;

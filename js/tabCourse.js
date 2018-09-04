@@ -3,7 +3,7 @@ function calcFreq(freq, count) {
 }
 
 function calcAvg(total, count) {
-  return total / count;
+  return (total / count).toFixed(1);
 }
 
 function formatCourseName(course) {
@@ -87,6 +87,7 @@ function modifyDOMCourse(dom, fn) {
         courseName.innerText = formatCourseName(course);
 
         let ul = createElement('ul');
+        ul.classList.add('info-course');
         const itemsLength = items.length;
 
         content.appendChild(ul);
@@ -102,7 +103,7 @@ function modifyDOMCourse(dom, fn) {
 
         fn(true);
       } else {
-        requestTabCourse(urlCourse);
+        actionTabCourse(urlCourse);
       }
     }
   });

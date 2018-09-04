@@ -5,7 +5,7 @@ function getMultiple(urls) {
       axios.get(urls[1])
     ])
     .then(axios.spread((firstResponse, secondResponse) => resolve(secondResponse)))
-    .catch(error => reject(error));
+    .catch(err => reject(err));
   });
 }
 
@@ -13,6 +13,6 @@ function get(url) {
   return new Promise((resolve, reject) => {
     axios.get(url[0])
     .then(response => resolve(response))
-    .catch(error => reject(error));
+    .catch(err => reject(err));
   });
 }

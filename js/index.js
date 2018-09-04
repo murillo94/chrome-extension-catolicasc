@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let btnCourse = findId('tab-course');
     let btnPayments = findId('tab-payments');
     let btnExercises = findId('tab-exercises');
+    let btnCalendar = findId('tab-calendar');
 
     loading = findId('load');
     contentAll = findId('content-all');
@@ -22,8 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
     btnCourse.onclick = actionTabCourse;
     btnPayments.onclick = actionTabPayments;
     btnExercises.onclick = actionTabExercises;
+    btnCalendar.onclick = actionTabCalendar;
 
-    requestTabCourse(urlCourse);
+    actionTabCourse(urlCourse);
   } catch(err) {
     actionClose();
   }
@@ -60,18 +62,6 @@ function actionClose() {
 }
 
 function actionTabCourse() {
-  requestTabCourse();
-}
-
-function actionTabPayments() {
-  requestTabPayments();
-}
-
-function actionTabExercises() {
-  requestTabExercises();
-}
-
-function requestTabCourse() {
   request(urlCourse, 'multiple', (parser, response) => {
     const { data } = response;
     modifyDOMCourse(parser.parseFromString(data, 'text/html'), res => {
@@ -80,7 +70,7 @@ function requestTabCourse() {
   });
 }
 
-function requestTabPayments() {
+function actionTabPayments() {
   request(urlPayments, 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMPayments(parser.parseFromString(data, 'text/html'), res => {
@@ -89,7 +79,7 @@ function requestTabPayments() {
   });
 }
 
-function requestTabExercises() {
+function actionTabExercises() {
   request(urlExercises, 'individual', (parser, response) => {
     const { error, html } = response.data;
     if(error) {
@@ -97,6 +87,15 @@ function requestTabExercises() {
       return;
     }
     modifyDOMExercises(parser.parseFromString(html, 'text/html'), res => {
+      requestDone(res);
+    });
+  });
+}
+
+function actionTabCalendar() {
+  request([urlCalendar[0]], 'individual', (parser, response) => {
+    const { data } = response;
+    modifyDOMCalendar(parser.parseFromString(data, 'text/html'), res => {
       requestDone(res);
     });
   });
@@ -115,7 +114,7 @@ function request(url, type, fn) {
       const parser = new DOMParser();
       fn(parser, response);
     })
-    .catch(errorMessage => {
+    .catch(err => {
       actionClose();
     });
 }

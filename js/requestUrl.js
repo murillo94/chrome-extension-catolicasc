@@ -10,3 +10,8 @@ const urlPayments = [
 const urlExercises = [
   'http://cscj.mrooms.net/theme/snap/rest.php?action=get_deadlines'
 ];
+
+const urlCalendar = [
+  'http://www.catolicasc.org.br/joinville/calendario/',
+  'http://www.catolicasc.org.br/jaragua-do-sul/calendario/'
+];
