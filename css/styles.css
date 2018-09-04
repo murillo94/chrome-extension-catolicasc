@@ -316,6 +316,24 @@ input[type="radio"]:checked ~ .options {
   margin: 1.5em 0;
 }
 
+.container-options-calendar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 17px;
+}
+
+.text-options-calendar {
+  font-size: 13px;
+  color: #9a9494;
+  margin: 0;
+}
+
+.choose-calendar {
+  font-size: 13px;
+  color: #9a9494;
+}
+
 .month-calendar {
   font-weight: 600;
   font-size: 14px;

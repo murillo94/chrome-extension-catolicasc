@@ -92,8 +92,8 @@ function actionTabExercises() {
   });
 }
 
-function actionTabCalendar() {
-  request([urlCalendar[0]], 'individual', (parser, response) => {
+function actionTabCalendar(e, index = 0) {
+  request([urlCalendar[index]], 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMCalendar(parser.parseFromString(data, 'text/html'), res => {
       requestDone(res);

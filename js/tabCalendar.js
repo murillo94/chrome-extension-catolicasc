@@ -1,3 +1,12 @@
+let selected = 0;
+
+function addListenerChangeRegion() {
+  findId('select-calendar').addEventListener('change', function() {
+    selected = this.value;
+    actionTabCalendar('', this.value);
+  });
+}
+
 function formatMonthName(month) {
   const months = {
     Jan: 'Janeiro',
@@ -23,10 +32,33 @@ function modifyDOMCalendar(dom, fn) {
   let dates = calendar.getElementsByTagName('article');
   let content = findId('content');
   let items = {};
+  let containerOptions = createElement('div');
+  let textOptions = createElement('p');
+  let selectOptions = createElement('select');
+  let choose1 = createElement('option');
+  let choose2 = createElement('option');
 
   const datesLength = dates.length;
 
   content.innerHTML = '';
+
+  selectOptions.setAttribute('id', 'select-calendar');
+
+  containerOptions.classList.add('container-options-calendar');
+  textOptions.classList.add('text-options-calendar');
+  selectOptions.classList.add('choose-calendar');
+
+  containerOptions.appendChild(textOptions).innerHTML = 'Escolha sua região:';
+  choose1.value = 0;
+  choose1.text = 'Joinville';
+  selectOptions.appendChild(choose1);
+  choose2.value = 1;
+  choose2.text = 'Jaraguá do Sul';
+  selectOptions.appendChild(choose2);
+  containerOptions.appendChild(selectOptions);
+  content.appendChild(containerOptions);
+
+  findId('select-calendar').value = selected;
 
   for (let x = 0; x < datesLength; x++) {
     if (items[dates[x].children[0].children[0].innerText] === undefined) {
@@ -77,6 +109,8 @@ function modifyDOMCalendar(dom, fn) {
       ul.appendChild(li);
     }
   }
+
+  addListenerChangeRegion();
 
   fn(true);
 }
