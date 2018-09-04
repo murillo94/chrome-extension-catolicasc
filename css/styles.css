@@ -1,10 +1,12 @@
 body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #9a9494;
+  background: #ffffff;
   width: 300px;
   min-height: 200px;
   overflow: auto;
   margin: 15px 20px;
-  background: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .hide {
@@ -12,10 +14,11 @@ body {
 }
 
 .not-logged {
-  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: #000000;
+  height: 200px;
 }
 
 .loading {
@@ -87,13 +90,13 @@ body {
 .btn-login {
   font-weight: bold;
   font-size: 13px;
+  color: #ffffff;
   background: #982f43e6;
   border-radius: 10px;
   border: none;
   padding: 12px;
-  color: #ffffff;
-  width: 100%;
   cursor: pointer;
+  width: 100%;
 }
 
 .btn-login:hover {
@@ -113,6 +116,7 @@ body {
   margin-left: 10px;
   font-size: 15px;
   font-weight: bold;
+  color: #000000;
   width: 100%;
   padding-right: 30px;
   overflow: hidden;
@@ -127,15 +131,15 @@ body {
 }
 
 .close-popup {
-  cursor: pointer;
   font-size: 14px;
-  padding: 5px 10px;
+  cursor: pointer;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding: 5px 10px;
+  border-radius: 10px;
   position: absolute;
   right: 10px;
-  border-radius: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -160,12 +164,12 @@ body {
 }
 
 .options {
+  font-size: 12px;
+  color: #a6a6a9;
   background: #eee;
   border-radius: 7px;
   padding: 4px 10px;
   cursor: pointer;
-  color: #a6a6a9;
-  font-size: 12px;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -329,14 +333,10 @@ input[type="radio"]:checked ~ .options {
   margin: 0;
 }
 
-.choose-calendar {
-  font-size: 13px;
-  color: #9a9494;
-}
-
 .month-calendar {
   font-weight: 600;
   font-size: 14px;
+  color: #000000;
   padding: 14px 0;
 }
 
@@ -353,18 +353,13 @@ input[type="radio"]:checked ~ .options {
 }
 
 .date-calendar {
+  font-weight: bold;
   font-size: 14px;
   color: #9a9494;
-  margin-right: 15px;
-  padding: 5px;
   background: #eee;
   border-radius: 50px;
-  font-weight: bold;
-}
-
-.title-calendar {
-  font-size: 13px;
-  color: #9a9494;
+  margin-right: 15px;
+  padding: 5px;
 }
 
 a {
