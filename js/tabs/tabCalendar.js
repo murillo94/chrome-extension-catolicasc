@@ -60,6 +60,11 @@ function modifyDOMCalendar(dom, fn) {
   let items = {};
 
   const datesLength = dates.length;
+  const date = new Date();
+
+  let today = date.getDate();
+
+  today = today < 10 ? `0${today}` : today;
 
   content.innerHTML = '';
 
@@ -77,6 +82,12 @@ function modifyDOMCalendar(dom, fn) {
       link: dates[x].children[1].children[1].children[1]
         ? dates[x].children[1].children[1].children[1].href
         : ''
+    });
+  }
+
+  for (let key in items) {
+    items[key].sort((a, b) => {
+      return a.date - b.date;
     });
   }
 
@@ -106,7 +117,7 @@ function modifyDOMCalendar(dom, fn) {
       }
 
       li.classList.add('item-calendar');
-      date.classList.add('date-calendar');
+      date.classList.add('date-calendar', today === items[key][i].date && 'date-calendar-today');
 
       li.appendChild(date).innerHTML = `${items[key][i].date}`;
       li.appendChild(title).innerHTML = `${items[key][i].title}`;

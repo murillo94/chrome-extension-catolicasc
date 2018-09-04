@@ -362,6 +362,11 @@ input[type="radio"]:checked ~ .options {
   padding: 5px;
 }
 
+.date-calendar-today {
+  color: #ffffff;
+  background: #982f43;
+}
+
 a {
   text-decoration: underline;
   cursor: pointer;

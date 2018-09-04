@@ -30,7 +30,6 @@ Todas as requisições HTTP feitas até o momento na aplicação recebe como res
 
 ## TODO
 
-- Ordenar os eventos do calendário pela data.
 - Adicionar aba/lógica para buscar notas do semestre atual.
 - Adicionar lógica para logar apenas uma vez (guardar em storage), para que quando entrar na aplicação reutilizar o storage.
 - Fazer novo estilo para aba de tarefas.
