@@ -1,4 +1,4 @@
-function modifyDOMExercises(dom, fn) {
+const modifyDOMExercises = (dom, fn) => {
   document.body.style.width = '300px';
 
   let content = findId('content');
@@ -11,6 +11,7 @@ function modifyDOMExercises(dom, fn) {
   for (let x = 0; x < links.length; x++) {
     let href = links[x].getAttribute('href');
     links[x].setAttribute('data-url', href);
+    links[x].setAttribute('title', href);
     links[x].onclick = actionNewTab;
   }
 

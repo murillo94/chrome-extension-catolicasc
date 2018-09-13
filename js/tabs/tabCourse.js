@@ -1,17 +1,13 @@
-function calcFreq(freq, count) {
-  return (freq / count).toFixed(1);
-}
+const calcFreq = (freq, count) => (freq / count).toFixed(1);
 
-function calcAvg(total, count) {
-  return (total / count).toFixed(1);
-}
+const calcAvg = (total, count) => (total / count).toFixed(1);
 
-function formatCourseName(course) {
+const formatCourseName = course => {
   const format = course.split(': ').pop();
   return format.charAt(0).toUpperCase() + format.slice(1).toLowerCase();
 }
 
-function modifyDOMCourse(dom, fn) {
+const modifyDOMCourse = (dom, fn) => {
   document.body.style.width = '300px';
   dom.getElementsByTagName('table')[0].setAttribute('id', 'infos');
 
@@ -92,7 +88,7 @@ function modifyDOMCourse(dom, fn) {
 
         content.appendChild(ul);
 
-        for(let y = 0; y < itemsLength; y++) {
+        for (let y = 0; y < itemsLength; y++) {
           let li = createElement('li');
           li.setAttribute('id', y);
           ul.appendChild(li).innerHTML = `${items[y].name} <span>${items[y].value}</span>`;

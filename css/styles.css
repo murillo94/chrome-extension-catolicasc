@@ -193,7 +193,7 @@ ul {
   font-size: 13px;
   color: #9a9494;
   padding: 14px 0;
-  border-bottom: 1px dashed #cacacd;
+  border-bottom: 1px dashed #d9d9dc;
 }
 
 .info-course li:first-child {
@@ -223,8 +223,12 @@ ul {
 }
 
 .payment-row-open {
-  background-color: rgba(255, 102, 102, 0.8);
-  color: #ffffff;
+  background: #ff6a6a;
+  border-radius: 7px;
+  color: #fff;
+  width: 80%;
+  padding: 3px 0;
+  text-align: center;
 }
 
 table {
@@ -251,18 +255,20 @@ tr:nth-child(1) {
 }
 
 tr:nth-child(1) td {
-  border-bottom: 1px dashed #cacacd;
+  border-bottom: 1px dashed #d9d9dc;
   padding: 14px 0;
 }
 
-input[type="radio"] {
+input[type='radio'] {
   display: none;
 }
 
-input[type="radio"]:checked ~ .options {
+input[type='radio']:checked ~ .options {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom: 2px solid #982f4394;
+  cursor: default;
+  pointer-events: none;
 }
 
 .snap-media-object > a > img,

@@ -1,4 +1,4 @@
-function modifyDOMPayments(dom, fn) {
+const modifyDOMPayments = (dom, fn) => {
   document.body.style.width = '530px';
   dom.getElementsByTagName('table')[0].setAttribute('id', 'contas');
 
@@ -25,27 +25,38 @@ function modifyDOMPayments(dom, fn) {
   content.appendChild(table);
   table.appendChild(tr);
 
-  for(let x = 0; x < headerLength; x++) {
+  for (let x = 0; x < headerLength; x++) {
     let td = createElement('td');
+
     td.setAttribute('id', x);
     td.setAttribute('size', 2);
     td.setAttribute('align', 'left');
     tr.appendChild(td).innerHTML = header[x].innerText;
   }
 
-  for(let y = 1; y <= tableLength; y++) {
+  for (let y = 1; y <= tableLength; y++) {
     let trNew = createElement('tr');
-    for(let i = 0; i < rows[y].cells.length; i++) {
+
+    for (let i = 0; i < rows[y].cells.length; i++) {
       let tdNew = createElement('td');
+
       tdNew.setAttribute('id', y+i);
       tdNew.setAttribute('size', 2);
       tdNew.setAttribute('align', 'left');
       tdNew.style.paddingLeft = '5px';
-      if(i === 0 && rows[y].cells[4].innerText === 'aberto') {
-        trNew.classList.add('payment-row-open');
+
+      if(i === 4 && rows[y].cells[4].innerText === 'aberto') {
+        let paymentOpen = createElement('div');
+
+        paymentOpen.classList.add('payment-row-open');
+
+        tdNew.appendChild(paymentOpen).innerText = rows[y].cells[i].innerText;
+        trNew.appendChild(tdNew);
         countPaymentLate++;
+      } else {
+        trNew.appendChild(tdNew).innerText = rows[y].cells[i].innerText;
       }
-      trNew.appendChild(tdNew).innerHTML = rows[y].cells[i].innerText;
+
       table.appendChild(trNew);
     }
   }
@@ -66,6 +77,7 @@ function modifyDOMPayments(dom, fn) {
     let paymentLink = createElement('a');
 
     paymentLink.setAttribute('data-url', 'https://app.catolicasc.org.br/BoletoNovo/?origem=academico');
+    paymentLink.setAttribute('title', 'https://app.catolicasc.org.br/BoletoNovo/?origem=academico');
     paymentLink.classList.add('payment-link');
     paymentLink.innerHTML = '(Imprimir)';
     findId('paymentLate').appendChild(paymentLink);

@@ -4,7 +4,7 @@ let contentAll;
 const colorPositive = '#4ca64c';
 const colorNegative = '#ff6666';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   try {
     let btnLogin = findId('login');
     let btnLoginMoodle = findId('login-moodle');
@@ -31,37 +31,29 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-function findId(query, context = document) {
-  return context.getElementById(query);
-}
+const findId = (query, context = document) => context.getElementById(query);
 
-function createElement(query, context = document) {
-  return context.createElement(query);
-}
+const createElement = (query, context = document) => context.createElement(query);
 
-function authUser(dom, fn) {
+const authUser = (dom, fn) => {
   const domReplaced = dom.split(': ').pop().replace(/\s/g, '');
   const isNotLogged = (domReplaced === 'Históricoacadêmico');
   const isAuth = (domReplaced !== '');
   fn({isNotLogged: isNotLogged, isAuth: isAuth});
 }
 
-function authMoodleUser() {
+const authMoodleUser = () => {
   contentAll.style.display = 'none';
   loading.style.display = 'none';
   let contentMoodleNotLogged = findId('content-moodle-not-logged');
   contentMoodleNotLogged.style.display = 'block';
 }
 
-function actionNewTab() {
-  chrome.tabs.create({active: true, url: this.dataset.url});
-}
+const actionNewTab = e => chrome.tabs.create({active: true, url: e.target.dataset.url});
 
-function actionClose() {
-  window.close();
-}
+const actionClose = () => window.close();
 
-function actionTabCourse() {
+const actionTabCourse = () => {
   request(urlCourse, 'multiple', (parser, response) => {
     const { data } = response;
     modifyDOMCourse(parser.parseFromString(data, 'text/html'), res => {
@@ -70,7 +62,7 @@ function actionTabCourse() {
   });
 }
 
-function actionTabPayments() {
+const actionTabPayments = () => {
   request(urlPayments, 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMPayments(parser.parseFromString(data, 'text/html'), res => {
@@ -79,7 +71,7 @@ function actionTabPayments() {
   });
 }
 
-function actionTabExercises() {
+const actionTabExercises = () => {
   request(urlExercises, 'individual', (parser, response) => {
     const { error, html } = response.data;
     if(error) {
@@ -92,7 +84,7 @@ function actionTabExercises() {
   });
 }
 
-function actionTabCalendar(e, index = 0) {
+const actionTabCalendar = (e, index = 0) => {
   request([urlCalendar[index]], 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMCalendar(parser.parseFromString(data, 'text/html'), res => {
@@ -101,7 +93,7 @@ function actionTabCalendar(e, index = 0) {
   });
 }
 
-function request(url, type, fn) {
+const request = (url, type, fn) => {
   loading.style.display = 'block';
   contentAll.style.display = 'none';
 
@@ -110,16 +102,16 @@ function request(url, type, fn) {
     : get(url);
 
   getType
-    .then(response => {
+    .then(res => {
       const parser = new DOMParser();
-      fn(parser, response);
+      fn(parser, res);
     })
     .catch(err => {
       actionClose();
     });
 }
 
-function requestDone(res) {
+const requestDone = res => {
   loading.style.display = 'none';
 
   if(res) {

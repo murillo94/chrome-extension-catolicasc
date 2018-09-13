@@ -1,13 +1,13 @@
 let selected = 0;
 
-function addListenerChangeRegion() {
+const addListenerChangeRegion = () => {
   findId('select-calendar').addEventListener('change', function() {
     selected = this.value;
     actionTabCalendar('', this.value);
   });
 }
 
-function createSelect(content) {
+const createSelect = content => {
   let containerOptions = createElement('div');
   let textOptions = createElement('p');
   let selectOptions = createElement('select');
@@ -33,7 +33,7 @@ function createSelect(content) {
   return;
 }
 
-function formatMonthName(month) {
+const formatMonthName = month => {
   const months = {
     Jan: 'Janeiro',
     Feb: 'Fevereiro',
@@ -51,7 +51,7 @@ function formatMonthName(month) {
   return months[month] || '';
 }
 
-function modifyDOMCalendar(dom, fn) {
+const modifyDOMCalendar = (dom, fn) => {
   document.body.style.width = '300px';
 
   let calendar = dom.getElementsByClassName('grid-calendar')[0];
