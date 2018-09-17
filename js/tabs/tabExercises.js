@@ -25,7 +25,7 @@ const modifyDOMExercises = (dom, fn) => {
 
       content.innerHTML = '';
       items.name = getMonthName(dom.getElementsByClassName('current')[0].innerText);
-      items.exercices = [];
+      items.exercises = [];
 
       for (let x = 0; x < tableLength; x++) {
         let cells = rows[x].cells;
@@ -34,7 +34,7 @@ const modifyDOMExercises = (dom, fn) => {
         for (let y = 0; y < cellslength; y++) {
           if (cells[y].className !== 'dayblank' && cells[y].children[0].childElementCount) {
             let item = cells[y].children[0].children[1].children[0].children[0].children[0];
-            items.exercices.push({
+            items.exercises.push({
               title: item.title,
               date: formatDay(cells[y].children[0].children[0].innerText),
               link: item.href
@@ -45,7 +45,7 @@ const modifyDOMExercises = (dom, fn) => {
         }
       }
 
-      items.exercices.sort((a, b) => {
+      items.exercises.sort((a, b) => {
         return a.date - b.date;
       });
 
@@ -54,7 +54,7 @@ const modifyDOMExercises = (dom, fn) => {
       content.appendChild(ul);
 
       let month = createElement('li');
-      let itemsLength = items.exercices.length;
+      let itemsLength = items.exercises.length;
 
       month.classList.add('month-calendar');
 
@@ -65,15 +65,15 @@ const modifyDOMExercises = (dom, fn) => {
         let date = createElement('div');
         let title = createElement('a');
 
-        title.setAttribute('data-url', items.exercices[i].link);
-        title.setAttribute('title', items.exercices[i].title);
+        title.setAttribute('data-url', items.exercises[i].link);
+        title.setAttribute('title', items.exercises[i].title);
         title.onclick = actionNewTab;
 
         li.classList.add('item-calendar');
-        date.classList.add('date-calendar', today === items.exercices[i].date && 'date-calendar-today');
+        date.classList.add('date-calendar', today === items.exercises[i].date && 'date-calendar-today');
 
-        li.appendChild(date).innerHTML = `${items.exercices[i].date}`;
-        li.appendChild(title).innerHTML = `${items.exercices[i].title}`;
+        li.appendChild(date).innerHTML = `${items.exercises[i].date}`;
+        li.appendChild(title).innerHTML = `${items.exercises[i].title}`;
         ul.appendChild(li);
       }
 
