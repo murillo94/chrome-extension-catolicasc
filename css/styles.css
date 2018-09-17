@@ -271,61 +271,6 @@ input[type='radio']:checked ~ .options {
   pointer-events: none;
 }
 
-.snap-media-object > a > img,
-.snap-media-object > img {
-  float: left;
-  display: block;
-  width: 36px;
-  margin: 0.3em 1em 0 0.3em;
-  height: auto;
-  text-decoration: underline;
-}
-
-.snap-media-object a {
-  text-decoration: none;
-}
-
-.snap-media-object a:hover {
-  text-decoration: underline;
-  text-decoration-color: rgb(171, 29, 46);
-}
-
-.snap-media-object h3 {
-  color: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  margin: 0;
-  color: rgb(171, 29, 46);
-}
-
-.snap-media-object h3 small {
-  color: inherit;
-  opacity: 0.9;
-}
-
-.snap-media-object .snap-media-meta {
-  display: block;
-  font-size: 0.75rem;
-  color: #818a91;
-}
-
-.snap-completion-meta,
-.snap-group-tag,
-.snap-grouping-tag {
-  text-align: right;
-  font-size: 0.75rem;
-  margin-bottom: 0.5em;
-}
-
-.snap-media-object .snap-media-body {
-  overflow: hidden;
-}
-
-.snap-media-object {
-  font-weight: 500;
-  margin: 1.5em 0;
-}
-
 .container-options-calendar {
   display: flex;
   flex-direction: row;

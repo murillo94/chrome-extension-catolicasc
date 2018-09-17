@@ -14,14 +14,13 @@ const modifyDOMCourse = (dom, fn) => {
   const infoDOM = dom.getElementById('infos').rows[0].cells[0].innerText;
 
   authUser(infoDOM, res => {
-    if(res.isNotLogged) {
+    if (res.isNotLogged) {
       fn(false);
     } else {
-      if(res.isAuth) {
+      if (res.isAuth) {
         dom.getElementsByTagName('table')[2].setAttribute('id', 'notas');
 
         let course = infoDOM;
-        let rows = dom.getElementById('notas').rows;
         let total = 0;
         let totalApproved = 0;
         let totalDisapproved = 0;
@@ -34,6 +33,7 @@ const modifyDOMCourse = (dom, fn) => {
 
         content.innerHTML = '';
 
+        const rows = dom.getElementById('notas').rows;
         const tableLength = rows.length;
         const lastLevel = rows[tableLength - 1].cells[0].innerText;
 
@@ -92,7 +92,7 @@ const modifyDOMCourse = (dom, fn) => {
           let li = createElement('li');
           li.setAttribute('id', y);
           ul.appendChild(li).innerHTML = `${items[y].name} <span>${items[y].value}</span>`;
-          if(items[y].color) {
+          if (items[y].color) {
             findId(y).style.color = items[y].color;
           }
         }

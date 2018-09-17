@@ -1,19 +1,26 @@
 const modifyDOMExercises = (dom, fn) => {
   document.body.style.width = '300px';
 
-  let content = findId('content');
+  const infoDOM = dom.getElementsByTagName('table')[0];
 
-  content.innerHTML = '';
-  content.innerHTML = dom.body.innerHTML;
+  authMoodleUser(infoDOM, res => {
+    if (!res) {
+      fn(false);
+    } else {
+      let items = {};
+      let content = findId('content');
 
-  let links = content.getElementsByTagName('a');
+      const rows = infoDOM.children[1].rows;
+      const tableLength = rows.length;
+      const date = new Date();
 
-  for (let x = 0; x < links.length; x++) {
-    let href = links[x].getAttribute('href');
-    links[x].setAttribute('data-url', href);
-    links[x].setAttribute('title', href);
-    links[x].onclick = actionNewTab;
-  }
+      let today = date.getDate();
 
-  fn(true);
+      today = today < 10 ? `0${today}` : today;
+
+      content.innerHTML = '';
+
+      fn(true);
+    }
+  });
 }

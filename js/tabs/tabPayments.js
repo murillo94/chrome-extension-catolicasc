@@ -45,7 +45,7 @@ const modifyDOMPayments = (dom, fn) => {
       tdNew.setAttribute('align', 'left');
       tdNew.style.paddingLeft = '5px';
 
-      if(i === 4 && rows[y].cells[4].innerText === 'aberto') {
+      if (i === 4 && rows[y].cells[4].innerText === 'aberto') {
         let paymentOpen = createElement('div');
 
         paymentOpen.classList.add('payment-row-open');
@@ -73,7 +73,7 @@ const modifyDOMPayments = (dom, fn) => {
 
   findId('paymentLate').innerHTML = `Você tem <span style="color: ${pendingColor};">${countPaymentLate} ${pendingText}</span> ${pendingMonthText}</span>`;
 
-  if(!!countPaymentLate) {
+  if (!!countPaymentLate) {
     let paymentLink = createElement('a');
 
     paymentLink.setAttribute('data-url', 'https://app.catolicasc.org.br/BoletoNovo/?origem=academico');

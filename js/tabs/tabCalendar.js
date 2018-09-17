@@ -7,7 +7,7 @@ const addListenerChangeRegion = () => {
   });
 }
 
-const createSelect = content => {
+const createSelectOptions = content => {
   let containerOptions = createElement('div');
   let textOptions = createElement('p');
   let selectOptions = createElement('select');
@@ -68,7 +68,7 @@ const modifyDOMCalendar = (dom, fn) => {
 
   content.innerHTML = '';
 
-  createSelect(content);
+  createSelectOptions(content);
 
   for (let x = 0; x < datesLength; x++) {
     if (items[dates[x].children[0].children[0].innerText] === undefined) {
@@ -97,13 +97,13 @@ const modifyDOMCalendar = (dom, fn) => {
 
   for (let key in items) {
     let month = createElement('li');
-    let itemLength = items[key].length;
+    let itemsLength = items[key].length;
 
     month.classList.add('month-calendar');
 
     ul.appendChild(month).innerHTML = `${formatMonthName(key)}`;
 
-    for (let i = 0; i < itemLength; i++) {
+    for (let i = 0; i < itemsLength; i++) {
       let li = createElement('li');
       let date = createElement('div');
       let title = items[key][i].link !== ''

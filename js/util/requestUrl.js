@@ -8,7 +8,7 @@ const urlPayments = [
 ];
 
 const urlExercises = [
-  'http://cscj.mrooms.net/theme/snap/rest.php?action=get_deadlines'
+  'http://cscj.mrooms.net/calendar/view.php?view=month'
 ];
 
 const urlCalendar = [

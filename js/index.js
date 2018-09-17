@@ -42,11 +42,9 @@ const authUser = (dom, fn) => {
   fn({isNotLogged: isNotLogged, isAuth: isAuth});
 }
 
-const authMoodleUser = () => {
-  contentAll.style.display = 'none';
-  loading.style.display = 'none';
-  let contentMoodleNotLogged = findId('content-moodle-not-logged');
-  contentMoodleNotLogged.style.display = 'block';
+const authMoodleUser = (dom, fn) => {
+  const isAuth = (dom !== undefined);
+  fn(isAuth);
 }
 
 const actionNewTab = e => chrome.tabs.create({active: true, url: e.target.dataset.url});
@@ -57,7 +55,7 @@ const actionTabCourse = () => {
   request(urlCourse, 'multiple', (parser, response) => {
     const { data } = response;
     modifyDOMCourse(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res);
+      requestDone(res, 'content-not-logged');
     });
   });
 }
@@ -66,20 +64,16 @@ const actionTabPayments = () => {
   request(urlPayments, 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMPayments(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res);
+      requestDone(res, 'content-not-logged');
     });
   });
 }
 
 const actionTabExercises = () => {
   request(urlExercises, 'individual', (parser, response) => {
-    const { error, html } = response.data;
-    if(error) {
-      authMoodleUser();
-      return;
-    }
-    modifyDOMExercises(parser.parseFromString(html, 'text/html'), res => {
-      requestDone(res);
+    const { data } = response;
+    modifyDOMExercises(parser.parseFromString(data, 'text/html'), res => {
+      requestDone(res, 'content-moodle-not-logged');
     });
   });
 }
@@ -88,7 +82,7 @@ const actionTabCalendar = (e, index = 0) => {
   request([urlCalendar[index]], 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMCalendar(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res);
+      requestDone(res, 'content-not-logged');
     });
   });
 }
@@ -111,13 +105,13 @@ const request = (url, type, fn) => {
     });
 }
 
-const requestDone = res => {
+const requestDone = (res, id) => {
   loading.style.display = 'none';
 
-  if(res) {
+  if (res) {
     contentAll.style.display = 'block';
   } else {
-    let contentNotLogged = findId('content-not-logged');
+    let contentNotLogged = findId(id);
     contentNotLogged.style.display = 'block';
   }
 }

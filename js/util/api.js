@@ -1,4 +1,4 @@
-function getMultiple(urls) {
+const getMultiple = urls => {
   return new Promise((resolve, reject) => {
     axios.all([
       axios.get(urls[0]),
@@ -9,7 +9,7 @@ function getMultiple(urls) {
   });
 }
 
-function get(url) {
+const get = url => {
   return new Promise((resolve, reject) => {
     axios.get(url[0])
     .then(response => resolve(response))
