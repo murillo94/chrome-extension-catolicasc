@@ -289,6 +289,7 @@ input[type='radio']:checked ~ .options {
   font-size: 14px;
   color: #000000;
   padding: 14px 0;
+  text-transform: capitalize;
 }
 
 .month-calendar:first-child {

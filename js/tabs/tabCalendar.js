@@ -64,7 +64,7 @@ const modifyDOMCalendar = (dom, fn) => {
 
   let today = date.getDate();
 
-  today = today < 10 ? `0${today}` : today;
+  today = formatDay(today);
 
   content.innerHTML = '';
 
