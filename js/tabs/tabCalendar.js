@@ -90,7 +90,7 @@ const modifyDOMCalendar = (dom, fn) => {
   }
 
   let ul = createElement('ul');
-
+  ul.classList.add('list-default');
   content.appendChild(ul);
 
   for (let key in items) {
@@ -112,7 +112,6 @@ const modifyDOMCalendar = (dom, fn) => {
         title.onclick = actionNewTab;
       }
 
-      li.classList.add('item-calendar');
       date.classList.add('date-calendar', today === item.date && 'date-calendar-today');
 
       li.appendChild(date).innerHTML = `${item.date}`;

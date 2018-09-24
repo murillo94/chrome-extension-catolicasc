@@ -45,11 +45,11 @@ const modifyDOMExercises = (dom, fn) => {
       });
 
       let ul = createElement('ul');
+      ul.classList.add('list-default');
       content.appendChild(ul);
 
       let month = createElement('li');
       month.classList.add('month-calendar');
-
       ul.appendChild(month).innerHTML = items.name;
 
       items.exercises.forEach(item => {
@@ -61,7 +61,6 @@ const modifyDOMExercises = (dom, fn) => {
         title.setAttribute('title', item.title);
         title.onclick = actionNewTab;
 
-        li.classList.add('item-calendar');
         date.classList.add('date-calendar', today === item.date && 'date-calendar-today');
 
         li.appendChild(date).innerHTML = `${item.date}`;

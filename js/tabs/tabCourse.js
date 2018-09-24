@@ -86,7 +86,6 @@ const modifyDOMCourse = (dom, fn) => {
 
         let ul = createElement('ul');
         ul.classList.add('info-course');
-
         content.appendChild(ul);
 
         items.forEach((item, index) => {

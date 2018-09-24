@@ -201,7 +201,7 @@ ul {
 
 .info-course li:last-child, .payments li:last-child {
   border: none;
-  padding: 14px 0 5px;
+  padding-bottom: 5px;
 }
 
 .info-course li span {
@@ -231,7 +231,7 @@ ul {
 
 .payment-stage {
   flex: .2;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .payment-infos {
@@ -284,11 +284,15 @@ input[type='radio']:checked ~ .options {
   padding-top: 0;
 }
 
-.item-calendar {
+.list-default li {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   padding: 10px 0;
+}
+
+.list-default li:last-child {
+  padding-bottom: 5px;
 }
 
 .date-calendar {
