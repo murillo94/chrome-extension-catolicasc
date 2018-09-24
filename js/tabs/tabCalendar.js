@@ -68,17 +68,17 @@ const modifyDOMCalendar = (dom, fn) => {
 
   createSelectOptions(content);
 
-  dates.forEach((item, index) => {
-    let monthName = dates[index].children[0].children[0].innerText;
+  dates.forEach(item => {
+    let monthName = item.children[0].children[0].innerText;
 
     items[monthName] = items[monthName] || [];
 
     items[monthName].push({
-      title: dates[index].children[1].children[0].innerText,
-      date: dates[index].children[0].childNodes[0].data.replace(/^\s+|\s+$/g, ''),
+      title: item.children[1].children[0].innerText,
+      date: item.children[0].childNodes[0].data.replace(/^\s+|\s+$/g, ''),
       month: monthName,
-      link: dates[index].children[1].children[1].children[1]
-        ? dates[index].children[1].children[1].children[1].href
+      link: item.children[1].children[1].children[1]
+        ? item.children[1].children[1].children[1].href
         : ''
     });
   });
