@@ -33,22 +33,24 @@ const modifyDOMCourse = (dom, fn) => {
 
         content.innerHTML = '';
 
-        const rows = dom.getElementById('notas').rows;
+        const rows = formatNodeListToArray(dom.getElementById('notas').rows);
         const tableLength = rows.length;
         const lastLevel = rows[tableLength - 1].cells[0].innerText;
 
-        for (let x = 0; x < tableLength; x++) {
-          if (!Number.isNaN(parseFloat(rows[x].cells[2].innerText))) {
-            level = rows[x].cells[1].children[0].innerText === '' && rows[x].cells[0].innerText !== lastLevel
-              ? parseInt(rows[x].cells[0].innerText, 10) + 1
-              : rows[x].cells[0].innerText;
-            total += parseFloat(rows[x].cells[2].innerText);
-            totalDisapproved += (parseFloat(rows[x].cells[2].innerText) < 6) && 1;
-            totalApproved += (parseFloat(rows[x].cells[2].innerText) > 6) && 1;
-            freq += parseFloat(rows[x].cells[4].innerText);
+        rows.forEach(row => {
+          let cells = row.cells;
+
+          if (!Number.isNaN(parseFloat(cells[2].innerText))) {
+            level = cells[1].children[0].innerText === '' && cells[0].innerText !== lastLevel
+              ? parseInt(cells[0].innerText, 10) + 1
+              : cells[0].innerText;
+            total += parseFloat(cells[2].innerText);
+            totalDisapproved += (parseFloat(cells[2].innerText) < 6) && 1;
+            totalApproved += (parseFloat(cells[2].innerText) > 6) && 1;
+            freq += parseFloat(cells[4].innerText);
             count++;
           }
-        }
+        });
 
         items = [{
           name: 'Fase atual do curso:',
@@ -84,18 +86,19 @@ const modifyDOMCourse = (dom, fn) => {
 
         let ul = createElement('ul');
         ul.classList.add('info-course');
-        const itemsLength = items.length;
 
         content.appendChild(ul);
 
-        for (let y = 0; y < itemsLength; y++) {
+        items.forEach((item, index) => {
           let li = createElement('li');
-          li.setAttribute('id', y);
-          ul.appendChild(li).innerHTML = `${items[y].name} <span>${items[y].value}</span>`;
-          if (items[y].color) {
-            findId(y).style.color = items[y].color;
+          li.setAttribute('id', index);
+
+          ul.appendChild(li).innerHTML = `${item.name} <span>${item.value}</span>`;
+
+          if (item.color) {
+            findId(index).style.color = item.color;
           }
-        }
+        });
 
         fn(true);
       } else {

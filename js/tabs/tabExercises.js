@@ -1,7 +1,4 @@
-const getMonthName = value => {
-  value = value || '';
-  return value.replace(/\d+/g, '').trim();
-}
+const getMonthName = value => value.replace(/\d+/g, '').trim() || '';
 
 const modifyDOMExercises = (dom, fn) => {
   document.body.style.width = '300px';
@@ -15,67 +12,62 @@ const modifyDOMExercises = (dom, fn) => {
       let items = {};
       let content = findId('content');
 
-      const rows = infoDOM.children[1].rows;
-      const tableLength = rows.length;
+      const rows = formatNodeListToArray(infoDOM.children[1].rows);
       const date = new Date();
 
       let today = date.getDate();
-
       today = formatDay(today);
 
       content.innerHTML = '';
+
       items.name = getMonthName(dom.getElementsByClassName('current')[0].innerText);
       items.exercises = [];
 
-      for (let x = 0; x < tableLength; x++) {
-        let cells = rows[x].cells;
-        let cellslength = cells.length;
+      rows.forEach(row => {
+        let cells = formatNodeListToArray(row.cells);
 
-        for (let y = 0; y < cellslength; y++) {
-          if (cells[y].className !== 'dayblank' && cells[y].children[0].childElementCount) {
-            let item = cells[y].children[0].children[1].children[0].children[0].children[0];
+        cells.forEach(cell => {
+          if (cell.className !== 'dayblank' && cell.children[0].childElementCount) {
+            let item = cell.children[0].children[1].children[0].children[0].children[0];
             items.exercises.push({
               title: item.title,
-              date: formatDay(cells[y].children[0].children[0].innerText),
+              date: formatDay(cell.children[0].children[0].innerText),
               link: item.href
               ? item.href
               : 'http://cscj.mrooms.net/calendar/view.php?view=month'
             })
           }
-        }
-      }
+        });
+      });
 
       items.exercises.sort((a, b) => {
         return a.date - b.date;
       });
 
       let ul = createElement('ul');
-
       content.appendChild(ul);
 
       let month = createElement('li');
-      let itemsLength = items.exercises.length;
-
       month.classList.add('month-calendar');
 
       ul.appendChild(month).innerHTML = items.name;
 
-      for (let i = 0; i < itemsLength; i++) {
+      items.exercises.forEach(item => {
         let li = createElement('li');
         let date = createElement('div');
         let title = createElement('a');
 
-        title.setAttribute('data-url', items.exercises[i].link);
-        title.setAttribute('title', items.exercises[i].title);
+        title.setAttribute('data-url', item.link);
+        title.setAttribute('title', item.title);
         title.onclick = actionNewTab;
 
         li.classList.add('item-calendar');
-        date.classList.add('date-calendar', today === items.exercises[i].date && 'date-calendar-today');
+        date.classList.add('date-calendar', today === item.date && 'date-calendar-today');
 
-        li.appendChild(date).innerHTML = `${items.exercises[i].date}`;
-        li.appendChild(title).innerHTML = `${items.exercises[i].title}`;
+        li.appendChild(date).innerHTML = `${item.date}`;
+        li.appendChild(title).innerHTML = `${item.title}`;
         ul.appendChild(li);
-      }
+      });
 
       fn(true);
     }

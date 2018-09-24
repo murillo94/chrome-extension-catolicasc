@@ -35,6 +35,8 @@ const findId = (query, context = document) => context.getElementById(query);
 
 const createElement = (query, context = document) => context.createElement(query);
 
+const formatNodeListToArray = list => Array.from(list);
+
 const formatDay = day => day < 10 ? `0${day}` : day;
 
 const authUser = (dom, fn) => {

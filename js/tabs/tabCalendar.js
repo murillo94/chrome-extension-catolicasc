@@ -55,35 +55,33 @@ const modifyDOMCalendar = (dom, fn) => {
   document.body.style.width = '300px';
 
   let calendar = dom.getElementsByClassName('grid-calendar')[0];
-  let dates = calendar.getElementsByTagName('article');
+  let dates = formatNodeListToArray(calendar.getElementsByTagName('article'));
   let content = findId('content');
   let items = {};
 
-  const datesLength = dates.length;
   const date = new Date();
 
   let today = date.getDate();
-
   today = formatDay(today);
 
   content.innerHTML = '';
 
   createSelectOptions(content);
 
-  for (let x = 0; x < datesLength; x++) {
-    if (items[dates[x].children[0].children[0].innerText] === undefined) {
-      items[dates[x].children[0].children[0].innerText] = [];
-    }
+  dates.forEach((item, index) => {
+    let monthName = dates[index].children[0].children[0].innerText;
 
-    items[dates[x].children[0].children[0].innerText].push({
-      title: dates[x].children[1].children[0].innerText,
-      date: dates[x].children[0].childNodes[0].data.replace(/^\s+|\s+$/g, ''),
-      month: dates[x].children[0].children[0].innerText,
-      link: dates[x].children[1].children[1].children[1]
-        ? dates[x].children[1].children[1].children[1].href
+    items[monthName] = items[monthName] || [];
+
+    items[monthName].push({
+      title: dates[index].children[1].children[0].innerText,
+      date: dates[index].children[0].childNodes[0].data.replace(/^\s+|\s+$/g, ''),
+      month: monthName,
+      link: dates[index].children[1].children[1].children[1]
+        ? dates[index].children[1].children[1].children[1].href
         : ''
     });
-  }
+  });
 
   for (let key in items) {
     items[key].sort((a, b) => {
@@ -97,32 +95,30 @@ const modifyDOMCalendar = (dom, fn) => {
 
   for (let key in items) {
     let month = createElement('li');
-    let itemsLength = items[key].length;
-
     month.classList.add('month-calendar');
 
     ul.appendChild(month).innerHTML = `${formatMonthName(key)}`;
 
-    for (let i = 0; i < itemsLength; i++) {
+    items[key].forEach(item => {
       let li = createElement('li');
       let date = createElement('div');
-      let title = items[key][i].link !== ''
+      let title = item.link !== ''
         ? createElement('a')
         : createElement('div');
 
-      if (items[key][i].link !== '') {
-        title.setAttribute('data-url', items[key][i].link);
-        title.setAttribute('title', items[key][i].title);
+      if (item.link) {
+        title.setAttribute('data-url', item.link);
+        title.setAttribute('title', item.title);
         title.onclick = actionNewTab;
       }
 
       li.classList.add('item-calendar');
-      date.classList.add('date-calendar', today === items[key][i].date && 'date-calendar-today');
+      date.classList.add('date-calendar', today === item.date && 'date-calendar-today');
 
-      li.appendChild(date).innerHTML = `${items[key][i].date}`;
-      li.appendChild(title).innerHTML = `${items[key][i].title}`;
+      li.appendChild(date).innerHTML = `${item.date}`;
+      li.appendChild(title).innerHTML = `${item.title}`;
       ul.appendChild(li);
-    }
+    });
   }
 
   addListenerChangeRegion();
