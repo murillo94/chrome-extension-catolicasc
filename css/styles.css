@@ -1,6 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
+  line-height: 1.3;
   color: #9a9494;
   background: #ffffff;
   width: 300px;
@@ -83,8 +84,6 @@ body {
 .text-login {
   margin: 0;
   font-size: 13px;
-  font-weight: 500;
-  line-height: 1.3;
 }
 
 .btn-login {
@@ -131,11 +130,11 @@ body {
 }
 
 .close-popup {
-  font-size: 14px;
-  cursor: pointer;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  font-size: 14px;
+  cursor: pointer;
   padding: 5px 10px;
   border-radius: 10px;
   position: absolute;
@@ -200,7 +199,7 @@ ul {
   padding-top: 0;
 }
 
-.info-course li:last-child {
+.info-course li:last-child, .payments li:last-child {
   border: none;
   padding: 14px 0 5px;
 }
@@ -210,53 +209,42 @@ ul {
   float: right;
 }
 
+.payments li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #9a9494;
+  padding: 14px 0;
+  border-bottom: 1px dashed #d9d9dc;
+}
+
+.payments li:first-child {
+  padding-top: 20px;
+}
+
 .payment-status {
   font-size: 13px;
   color: #9a9494;
   padding: 0 0 5px;
 }
 
+.payment-stage {
+  flex: .2;
+  margin-right: 20px;
+}
+
+.payment-infos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: .8;
+}
+
 .payment-link {
   margin-left: 5px;
   cursor: pointer;
   text-decoration: underline;
-}
-
-.payment-row-open {
-  background: #ff6a6a;
-  border-radius: 7px;
-  color: #fff;
-  width: 80%;
-  padding: 3px 0;
-  text-align: center;
-}
-
-table {
-  width: 100%;
-  margin: 0;
-}
-
-tr {
-  font-size: 13px;
-  color: #9a9494;
-}
-
-tr td {
-  border-bottom: 1px dashed #efefef;
-  padding: 9px 0;
-}
-
-tr:last-child td {
-  border: none;
-}
-
-tr:nth-child(1) {
-  font-weight: 600;
-}
-
-tr:nth-child(1) td {
-  border-bottom: 1px dashed #d9d9dc;
-  padding: 14px 0;
 }
 
 input[type='radio'] {
@@ -297,11 +285,10 @@ input[type='radio']:checked ~ .options {
 }
 
 .item-calendar {
-  padding: 10px 0;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  line-height: 1.3;
+  padding: 10px 0;
 }
 
 .date-calendar {
