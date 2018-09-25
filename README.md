@@ -1,15 +1,16 @@
 <p align="center">
-    <img alt="Lighthouse Report" src="./img/icon.png" height="100" width="100" />
-    <h3 align="center">chrome-extension-catolicasc</h3>
+    <img alt="Lighthouse Report" src="./img/icon.png" height="80" width="80" />
+    <h3 align="center">
+        chrome-extension-catolicasc
+    </h3>
+    <p align="center">
+        Uma extensão que centraliza as principais informações do aluno na Univ. Católica de Santa Catarina - Joinville
+    </p>
 </p>
 
 ---
 
-Uma extensão que centraliza as principais informações do aluno na Univ. Católica de Santa Catarina - Joinville
-
-## O que é isso
-
-Essa extensão é uma aplicação cross-browser escrita em JavaScript que ajuda você (aluno) a centralizar todas as informações da Univ. Católica de Santa Catarina - Joinville. O objetivo da extensão é fazer que você não tenha mais que ficar abrindo várias páginas, informando login, para assim chegar nas informações que você necessita.
+Essa aplicação é uma extensão cross-browser escrita em JavaScript que ajuda você (aluno) a centralizar todas as informações da Univ. Católica de Santa Catarina - Joinville. O objetivo da extensão é fazer que você não tenha mais que ficar abrindo várias páginas, informando login, para assim chegar nas informações que você necessita.
 
 ## Características
 
