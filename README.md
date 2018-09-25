@@ -4,7 +4,7 @@
         chrome-extension-catolicasc
     </h3>
     <p align="center">
-        Uma extensão que centraliza as principais informações do aluno na Univ. Católica de Santa Catarina - Joinville
+       Centralize as principais informações do seu curso em um lugar apenas.
     </p>
 </p>
 
