@@ -1,13 +1,25 @@
-# chrome-extension-catolicasc
+<p align="center">
+    <img alt="Lighthouse Report" src="./img/icon.png" height="100" width="100" />
+    <h3 align="center">chrome-extension-catolicasc</h3>
+</p>
+
+---
+
 Uma extensão que centraliza as principais informações do aluno na Univ. Católica de Santa Catarina - Joinville
 
-## O que é isso?
+## O que é isso
 
 Essa extensão é uma aplicação cross-browser escrita em JavaScript que ajuda você (aluno) a centralizar todas as informações da Univ. Católica de Santa Catarina - Joinville. O objetivo da extensão é fazer que você não tenha mais que ficar abrindo várias páginas, informando login, para assim chegar nas informações que você necessita.
 
-Por exemplo, com essa extensão você poder ver tudo em um só lugar a sua média total das matérias cursadas, frequência, boletos e etc.
+## Características
 
-## Como usar?
+- Informações do curso (média geral, frequência, total de matérias aprovadas, reprovadas e cursadas)
+- Boletos (pagamentos pendentes e realizados)
+- Tarefas
+- Calendário acadêmico
+- Notas do período
+
+## Como usar
 
 ### Google Chrome
 
