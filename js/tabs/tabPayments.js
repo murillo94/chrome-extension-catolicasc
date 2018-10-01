@@ -47,11 +47,11 @@ const modifyDOMPayments = (dom, fn) => {
       ? `<div style="color: ${colorNegative}; font-weight: 600;">Em aberto</div>`
       : `<div style="color: ${colorPositive}; font-weight: 600;">Pago em ${item.paidDate}</div>`;
     li.appendChild(infos).innerHTML =
-    `<div>
+    `<div style="min-width: 50%;">
       <p style="margin: 0 0 7px;">Vencimento: ${item.due}</p>
       <p style="margin: 0;">Valor original: ${item.originalValue}</p>
     </div>
-    <div>
+    <div style="min-width: 50%; padding-left: 20px;">
       <p style="margin: 0 0 7px;">Descontos: ${item.discount}</p>
       <p style="margin: 0";>Valor baixado: ${item.paidValue}</p>
     </div>`;
