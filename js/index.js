@@ -12,10 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let btnCourse = findId('tab-course');
     let btnPayments = findId('tab-payments');
     let btnExercises = findId('tab-exercises');
+    //let btnGrades = findId('tab-grades');
     let btnCalendar = findId('tab-calendar');
 
     loading = findId('load');
     contentAll = findId('content-all');
+
+    window.onclick = actionCloseTabExtra;
 
     btnLogin.onclick = actionNewTab;
     btnLoginMoodle.onclick = actionNewTab;
@@ -23,10 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     btnCourse.onclick = actionTabCourse;
     btnPayments.onclick = actionTabPayments;
     btnExercises.onclick = actionTabExercises;
+    //btnGrades.onclick = actionTabGrades;
     btnCalendar.onclick = actionTabCalendar;
 
     actionTabCourse(urlCourse);
-  } catch(err) {
+  } catch (err) {
     actionClose();
   }
 });
@@ -49,6 +53,14 @@ const authUser = (dom, fn) => {
 const authMoodleUser = (dom, fn) => {
   const isAuth = (dom !== undefined);
   fn(isAuth);
+}
+
+const actionCloseTabExtra = event => {
+  const tag = event.target.tagName.toLowerCase();
+
+  if (tag !== 'summary' && tag !== 'svg') {
+    document.getElementById("tab-details").open = false;
+  }
 }
 
 const actionNewTab = e => chrome.tabs.create({active: true, url: e.target.dataset.url});
@@ -81,6 +93,8 @@ const actionTabExercises = () => {
     });
   });
 }
+
+//const actionTabGrades = () => {}
 
 const actionTabCalendar = (e, index = 0) => {
   request([urlCalendar[index]], 'individual', (parser, response) => {
