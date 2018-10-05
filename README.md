@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Lighthouse Report" src="./img/icon.png" height="80" width="80" />
+    <img alt="Lighthouse Report" src="./src/img/icon.png" height="80" width="80" />
     <h3 align="center">
         chrome-extension-catolicasc
     </h3>
