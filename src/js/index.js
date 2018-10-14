@@ -124,7 +124,7 @@ const request = (url, type, fn) => {
 }
 
 const requestDone = (res, event, id) => {
-  let tab = event && (event.target ? event.target.labels[0].innerText : 'Curso');
+  let tab = event && (event.target ? event.target.labels[0].innerText : 'Curso') || 'Curso';
 
   loading.style.display = 'none';
 
