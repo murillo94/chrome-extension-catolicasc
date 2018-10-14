@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //btnGrades.onclick = actionTabGrades;
     btnCalendar.onclick = actionTabCalendar;
 
-    actionTabCourse(urlCourse);
+    actionTabCourse();
   } catch (err) {
     actionClose();
   }
@@ -63,44 +63,44 @@ const actionCloseTabExtra = event => {
   }
 }
 
-const actionNewTab = e => chrome.tabs.create({active: true, url: e.target.dataset.url});
+const actionNewTab = event => chrome.tabs.create({active: true, url: event.target.dataset.url});
 
 const actionClose = () => window.close();
 
-const actionTabCourse = () => {
+const actionTabCourse = event => {
   request(urlCourse, 'multiple', (parser, response) => {
     const { data } = response;
     modifyDOMCourse(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res, 'content-not-logged');
+      requestDone(res, event, 'content-not-logged');
     });
   });
 }
 
-const actionTabPayments = () => {
+const actionTabPayments = event => {
   request(urlPayments, 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMPayments(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res, 'content-not-logged');
+      requestDone(res, event, 'content-not-logged');
     });
   });
 }
 
-const actionTabExercises = () => {
+const actionTabExercises = event => {
   request(urlExercises, 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMExercises(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res, 'content-moodle-not-logged');
+      requestDone(res, event, 'content-moodle-not-logged');
     });
   });
 }
 
-//const actionTabGrades = () => {}
+//const actionTabGrades = event => {}
 
-const actionTabCalendar = (e, index = 0) => {
+const actionTabCalendar = (event, index = 0) => {
   request([urlCalendar[index]], 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMCalendar(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res, 'content-not-logged');
+      requestDone(res, event, 'content-not-logged');
     });
   });
 }
@@ -123,11 +123,14 @@ const request = (url, type, fn) => {
     });
 }
 
-const requestDone = (res, id) => {
+const requestDone = (res, event, id) => {
+  let tab = event && (event.target ? event.target.labels[0].innerText : 'Curso');
+
   loading.style.display = 'none';
 
   if (res) {
     contentAll.style.display = 'block';
+    findId('tab-name').innerHTML = tab;
   } else {
     let contentNotLogged = findId(id);
     contentNotLogged.style.display = 'block';
