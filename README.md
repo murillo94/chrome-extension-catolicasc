@@ -1,4 +1,4 @@
-<p align="center">
+<p align="center" style="margin-bottom: 30px;">
     <img alt="Logo da da Univ. Católica de Santa Catarina" src="./src/img/icon.png" height="80" width="80" />
     <h3 align="center">
         chrome-extension-catolicasc
