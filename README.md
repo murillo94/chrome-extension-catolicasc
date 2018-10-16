@@ -43,6 +43,5 @@ Todas as requisições HTTP feitas até o momento na aplicação recebe como res
 
 ## TODO
 
-- Adicionar aba/lógica para buscar notas do semestre atual.
 - Adicionar lógica para logar apenas uma vez (guardar em storage), para que quando entrar na aplicação reutilizar o storage.
 - Adicionar imagens da aplicação no README.md.
