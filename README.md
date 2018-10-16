@@ -3,10 +3,11 @@
     <h3 align="center">
         chrome-extension-catolicasc
     </h3>
-    <p align="center" style="margin-bottom: 30px;">
+    <p align="center">
        Centralize as principais informações do seu curso em um lugar apenas.
     </p>
 </p>
+
 
 ![](https://github.com/murillo94/chrome-extension-catolicasc/blob/master/src/img/demo/banner.png)
 
