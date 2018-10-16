@@ -8,7 +8,7 @@
     </p>
 </p>
 
-![](https://github.com/murillo94/chrome-extension-catolicasc/blob/master/img/demo/banner.png)
+![](https://github.com/murillo94/chrome-extension-catolicasc/blob/master/src/img/demo/banner.png)
 
 ---
 
