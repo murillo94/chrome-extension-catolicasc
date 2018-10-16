@@ -42,7 +42,7 @@ Essa aplicação é uma extensão cross-browser escrita em JavaScript que ajuda 
 
 ## Importante
 
-Todas as requisições HTTP feitas até o momento na aplicação recebe como resposta "content-type: text/html", sendo assim é necessário manipular o DOM obtido para extrair as informações necessárias.
+Todas as requisições HTTP feitas até o momento na aplicação, exceto as notas, recebem como resposta "content-type: text/html", sendo assim é necessário manipular o DOM obtido para extrair as informações necessárias.
 
 ## TODO
 
