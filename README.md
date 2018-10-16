@@ -1,9 +1,9 @@
-<p align="center" style="margin-bottom: 30px;">
+<p align="center">
     <img alt="Logo da da Univ. Católica de Santa Catarina" src="./src/img/icon.png" height="80" width="80" />
     <h3 align="center">
         chrome-extension-catolicasc
     </h3>
-    <p align="center">
+    <p align="center" style="margin-bottom: 30px;">
        Centralize as principais informações do seu curso em um lugar apenas.
     </p>
 </p>
