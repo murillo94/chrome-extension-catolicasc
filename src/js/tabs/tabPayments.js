@@ -53,7 +53,7 @@ const modifyDOMPayments = (dom, fn) => {
     </div>
     <div style="min-width: 50%; padding-left: 20px;">
       <p style="margin: 0 0 7px;">Descontos: ${item.discount}</p>
-      <p style="margin: 0";>Valor baixado: ${item.paidValue}</p>
+      <p style="margin: 0;">Valor baixado: ${item.paidValue}</p>
     </div>`;
     ul.appendChild(li);
   });
