@@ -47,3 +47,7 @@ Todas as requisições HTTP feitas até o momento na aplicação recebe como res
 ## TODO
 
 - Adicionar lógica para logar apenas uma vez (guardar em storage), para que quando entrar na aplicação reutilizar o storage.
+
+## License
+
+MIT © [Murillo de Miranda Pereira](https://github.com/murillo94)
