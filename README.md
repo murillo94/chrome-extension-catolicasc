@@ -8,6 +8,8 @@
     </p>
 </p>
 
+![](https://github.com/murillo94/chrome-extension-catolicasc/blob/master/img/demo/banner.png)
+
 ---
 
 Essa aplicação é uma extensão cross-browser escrita em JavaScript que ajuda você (aluno) a centralizar todas as informações da Univ. Católica de Santa Catarina - Joinville. O objetivo da extensão é fazer que você não tenha mais que ficar abrindo várias páginas, informando login, para assim chegar nas informações que você necessita.
