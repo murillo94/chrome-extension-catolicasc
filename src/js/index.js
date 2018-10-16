@@ -3,16 +3,18 @@ let contentAll;
 
 const colorPositive = '#4ca64c';
 const colorNegative = '#ff6666';
+const urlLoginCatolica = 'https://app.catolicasc.org.br/academico/restrito/';
+const urlLoginMoodle = 'https://cscj.mrooms.net/login/index.php';
+const urlLoginTotvs = 'https://app.catolicasc.org.br/portaleducacional/web/app/edu/PortalEducacional/login/';
 
 document.addEventListener('DOMContentLoaded', () => {
   try {
     let btnLogin = findId('login');
-    let btnLoginMoodle = findId('login-moodle');
     let btnClose = findId('close');
     let btnCourse = findId('tab-course');
     let btnPayments = findId('tab-payments');
     let btnExercises = findId('tab-exercises');
-    //let btnGrades = findId('tab-grades');
+    let btnGrades = findId('tab-grades');
     let btnCalendar = findId('tab-calendar');
 
     loading = findId('load');
@@ -21,12 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.onclick = actionCloseTabExtra;
 
     btnLogin.onclick = actionNewTab;
-    btnLoginMoodle.onclick = actionNewTab;
     btnClose.onclick = actionClose;
     btnCourse.onclick = actionTabCourse;
     btnPayments.onclick = actionTabPayments;
     btnExercises.onclick = actionTabExercises;
-    //btnGrades.onclick = actionTabGrades;
+    btnGrades.onclick = actionTabGrades;
     btnCalendar.onclick = actionTabCalendar;
 
     actionTabCourse();
@@ -71,7 +72,7 @@ const actionTabCourse = event => {
   request(urlCourse, 'multiple', (parser, response) => {
     const { data } = response;
     modifyDOMCourse(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res, event, 'content-not-logged');
+      requestDone(res, event, urlLoginCatolica);
     });
   });
 }
@@ -80,7 +81,7 @@ const actionTabPayments = event => {
   request(urlPayments, 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMPayments(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res, event, 'content-not-logged');
+      requestDone(res, event, urlLoginCatolica);
     });
   });
 }
@@ -89,18 +90,33 @@ const actionTabExercises = event => {
   request(urlExercises, 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMExercises(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res, event, 'content-moodle-not-logged');
+      requestDone(res, event, urlLoginMoodle);
     });
   });
 }
 
-//const actionTabGrades = event => {}
+const actionTabGrades = event => {
+  request([urlGrades[0]], 'individual', (parser, response) => {
+    const { value } = response.data.data;
+
+    if(!value) {
+      requestDone(false, event, urlLoginTotvs);
+    } else {
+      request([urlGrades[1]], 'individual', (parser, response) => {
+        const { data } = response.data;
+        modifyDOMGrades(data['NOTAS'], res => {
+          requestDone(res, event, urlLoginTotvs);
+        });
+      });
+    }
+  });
+}
 
 const actionTabCalendar = (event, index = 0) => {
   request([urlCalendar[index]], 'individual', (parser, response) => {
     const { data } = response;
     modifyDOMCalendar(parser.parseFromString(data, 'text/html'), res => {
-      requestDone(res, event, 'content-not-logged');
+      requestDone(res, event, urlLoginCatolica);
     });
   });
 }
@@ -123,7 +139,7 @@ const request = (url, type, fn) => {
     });
 }
 
-const requestDone = (res, event, id) => {
+const requestDone = (res, event, url) => {
   let tab = event && (event.target ? event.target.labels[0].innerText : 'Curso') || 'Curso';
 
   loading.style.display = 'none';
@@ -132,7 +148,10 @@ const requestDone = (res, event, id) => {
     contentAll.style.display = 'block';
     findId('tab-name').innerHTML = tab;
   } else {
-    let contentNotLogged = findId(id);
+    let contentNotLogged = findId('content-not-logged');
+    let btnLogin = findId('login');
+
+    btnLogin.setAttribute('data-url', url)
     contentNotLogged.style.display = 'block';
   }
 }

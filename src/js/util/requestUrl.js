@@ -11,6 +11,12 @@ const urlExercises = [
   'http://cscj.mrooms.net/calendar/view.php?view=month'
 ];
 
+const urlGrades = [
+  //'https://app.catolicasc.org.br/Corpore.Net/Source/EDU-EDUCACIONAL/Public/EduPortalAlunoLogin.aspx?AutoLoginType=ExternalLogin',
+  'https://app.catolicasc.org.br/portaleducacional/RM/API/TOTVSEducacional/UsuarioLogado',
+  'https://app.catolicasc.org.br/portaleducacional/RM/API/TOTVSEducacional/NotaEtapa'
+];
+
 const urlCalendar = [
   'http://www.catolicasc.org.br/joinville/calendario/',
   'http://www.catolicasc.org.br/jaragua-do-sul/calendario/'

@@ -12,24 +12,6 @@
       <div class="loader"></div>
     </div>
   </div>
-  <div id="content-moodle-not-logged" class="hide">
-    <div class="not-logged">
-      <div class="container-img">
-        <img src="src/img/icon.png" alt="Logo da Católica de Santa Catarina: Centro Universitário" width="31" height="31">
-        <div class="container-title">
-          <div class="course-name">
-            Tarefas
-          </div>
-        </div>
-      </div>
-      <p class="text-login">
-        Para acessá-las é necessário fazer login no AVA!
-      </p>
-      <button class="btn-login hover-default" id="login-moodle" data-url="https://cscj.mrooms.net/login/index.php">
-        Entrar
-      </button>
-    </div>
-  </div>
   <div id="content-not-logged" class="hide">
     <div class="not-logged">
       <div class="container-img">
@@ -43,7 +25,7 @@
       <p class="text-login">
         Para acessar suas informações é preciso estar logado!
       </p>
-      <button class="btn-login hover-default" id="login" data-url="https://app.catolicasc.org.br/academico/restrito/">
+      <button class="btn-login hover-default" id="login">
         Entrar
       </button>
     </div>
@@ -86,12 +68,12 @@
             Tarefas
           </label>
         </div>
-        <!--<div class="tab">
+        <div class="tab">
           <input type="radio" id="tab-grades" name="menu">
           <label class="options hover-default no-user-select" for="tab-grades">
             Notas
           </label>
-        </div>-->
+        </div>
       </div>
       <details id="tab-details" class="tab tab-extra">
         <summary class="hover-default no-user-select" aria-haspopup="true" aria-label="Ver opções">
@@ -123,6 +105,7 @@
   <script src="src/js/tabs/tabCourse.js" type="text/javascript"></script>
   <script src="src/js/tabs/tabPayments.js" type="text/javascript"></script>
   <script src="src/js/tabs/tabExercises.js" type="text/javascript"></script>
+  <script src="src/js/tabs/tabGrades.js" type="text/javascript"></script>
   <script src="src/js/tabs/tabCalendar.js" type="text/javascript"></script>
 </body>
 

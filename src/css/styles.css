@@ -3,7 +3,7 @@ body {
   font-size: 13px;
   line-height: 1.4;
   color: #9a9494;
-  background-color: #ffffff;
+  background-color: #fff;
   width: 300px;
   min-height: 200px;
   overflow: auto;
@@ -32,7 +32,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #000000;
+  color: #000;
   height: 200px;
 }
 
@@ -42,7 +42,7 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .container-loader {
@@ -85,7 +85,7 @@ body {
 .btn-login {
   font-weight: bold;
   font-size: 13px;
-  color: #ffffff;
+  color: #fff;
   background-color: #982f43e6;
   border-radius: 10px;
   border: none;
@@ -122,7 +122,7 @@ body {
 .course-name {
   font-size: 15px;
   font-weight: bold;
-  color: #000000;
+  color: #000;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -228,7 +228,7 @@ summary:focus {
 .options {
   font-size: 12px;
   color: #a6a6a9;
-  background-color: #eeeeee;
+  background-color: #eee;
   border-radius: 7px;
   padding: 4px 10px;
   cursor: pointer;
@@ -248,7 +248,7 @@ summary:focus {
 }
 
 .options-text:hover {
-  background-color: #eeeeee;
+  background-color: #eee;
 }
 
 ul {
@@ -258,7 +258,7 @@ ul {
 }
 
 .info-course li {
-  font-weight: 600;
+  font-weight: bold;
   font-size: 13px;
   color: #9a9494;
   padding: 14px 0;
@@ -350,9 +350,9 @@ input[type='radio']:checked ~ .options-text {
 }
 
 .month-calendar {
-  font-weight: 600;
+  font-weight: bold;
   font-size: 14px;
-  color: #000000;
+  color: #333;
   padding: 14px 0;
   text-transform: capitalize;
 }
@@ -372,18 +372,35 @@ input[type='radio']:checked ~ .options-text {
   padding-bottom: 5px;
 }
 
+.list-grades li{
+  flex-direction: column;
+}
+
+.subject-infos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.subject-infos-final {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #d9d9dc;
+}
+
 .date-calendar {
   font-weight: bold;
   font-size: 14px;
   color: #9a9494;
-  background-color: #eeeeee;
+  background-color: #eee;
   border-radius: 50px;
   margin-right: 15px;
   padding: 5px;
 }
 
 .date-calendar-today {
-  color: #ffffff;
+  color: #fff;
   background-color: #982f43;
 }
 
