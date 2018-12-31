@@ -1,13 +1,12 @@
 <p align="center">
-    <img alt="Logo da da Univ. Católica de Santa Catarina" src="./src/img/icon.png" height="80" width="80" />
-    <h3 align="center">
-        chrome-extension-catolicasc
-    </h3>
-    <p align="center">
-       Centralize as principais informações do seu curso em um lugar apenas.
-    </p>
+  <img alt="Logo da da Univ. Católica de Santa Catarina" src="./src/img/icon.png" height="85" width="85" />
+  <h3 align="center">
+    chrome-extension-catolicasc
+  </h3>
+  <p align="center">
+    Centralize as principais informações do seu curso em um lugar apenas.
+  </p>
 </p>
-
 
 ![](https://github.com/murillo94/chrome-extension-catolicasc/blob/master/src/img/demo/banner.png)
 
